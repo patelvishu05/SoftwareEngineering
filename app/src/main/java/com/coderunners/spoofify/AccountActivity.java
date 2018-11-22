@@ -1,44 +1,38 @@
 package com.coderunners.spoofify;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.TextView;
 
-public class MusicPlayer extends AppCompatActivity {
+public class AccountActivity extends AppCompatActivity {
 
-    private TextView mTextMessage;
     private BottomNavigationView bottomNavigationView;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_music_player);
+        setContentView(R.layout.activity_account);
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.music_navigation);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.music_navigation);
-
-        navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem)
             {
                 Intent intent;
                 switch(menuItem.getItemId())
                 {
-                    case R.id.navigation_account:
-                        intent = new Intent(MusicPlayer.this,AccountActivity.class);
+                    case R.id.navigation_music:
+                        intent = new Intent(AccountActivity.this,MusicPlayer.class);
                         startActivity(intent);
                         return true;
 
                     case R.id.navigation_home:
-                        intent = new Intent(MusicPlayer.this,LoginActivity.class);
+                        intent = new Intent(AccountActivity.this,LoginActivity.class);
                         startActivity(intent);
                         return true;
                 }
@@ -46,5 +40,4 @@ public class MusicPlayer extends AppCompatActivity {
             }
         });
     }
-
 }

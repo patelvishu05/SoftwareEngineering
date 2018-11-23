@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -12,6 +13,7 @@ public class MusicPlayer extends AppCompatActivity {
 
     private TextView mTextMessage;
     private BottomNavigationView bottomNavigationView;
+    private FloatingActionButton playIt;
 
 
     @Override
@@ -24,6 +26,8 @@ public class MusicPlayer extends AppCompatActivity {
 
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.music_navigation);
+
+        playIt = (FloatingActionButton) findViewById(R.id.play);
 
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

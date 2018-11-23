@@ -9,21 +9,29 @@
     tools:layout_editor_absoluteY="81dp">
 
     <android.support.design.widget.BottomNavigationView
-        android:id="@+id/music_navigation"
+        android:id="@+id/accountNavigation"
         android:layout_width="0dp"
         android:layout_height="56dp"
         android:background="?android:attr/windowBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/navigation" />
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="291dp"
-        android:layout_height="258dp"
-        app:srcCompat="@drawable/ic_baseline_account_circle_24px"
-        tools:layout_editor_absoluteX="47dp"
-        tools:layout_editor_absoluteY="16dp" />
+        android:id="@+id/accountProfile"
+        android:layout_width="226dp"
+        android:layout_height="183dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:contentDescription="@string/account_profile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_account2_circle_24px" />
 
 </android.support.constraint.ConstraintLayout>

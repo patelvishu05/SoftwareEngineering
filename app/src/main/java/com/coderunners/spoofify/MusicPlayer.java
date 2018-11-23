@@ -7,14 +7,42 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import java.net.ProtocolException;
 
 public class MusicPlayer extends AppCompatActivity {
 
     private TextView mTextMessage;
     private BottomNavigationView bottomNavigationView;
-    private FloatingActionButton playIt;
+    private FloatingActionButton play;
+    private FloatingActionButton pause;
+    private FloatingActionButton previous;
+    private FloatingActionButton next;
+    private TextView songName;
+    private ProgressBar progressBar;
 
+    public void play(View v)
+    {
+
+    }
+
+    public void pause(View v)
+    {
+
+    }
+
+    public void  previous(View v)
+    {
+
+    }
+
+    public void next(View v)
+    {
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -27,7 +55,12 @@ public class MusicPlayer extends AppCompatActivity {
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.music_navigation);
 
-        playIt = (FloatingActionButton) findViewById(R.id.play);
+        play = (FloatingActionButton) findViewById(R.id.play);
+        pause = (FloatingActionButton) findViewById(R.id.pause);
+        previous = (FloatingActionButton) findViewById(R.id.previous);
+        next = (FloatingActionButton) findViewById(R.id.next);
+        songName = (TextView) findViewById(R.id.songName);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -37,6 +70,7 @@ public class MusicPlayer extends AppCompatActivity {
                 switch(menuItem.getItemId())
                 {
                     case R.id.navigation_account:
+                        setTitle("Account");
                         intent = new Intent(MusicPlayer.this,AccountActivity.class);
                         startActivity(intent);
                         return true;

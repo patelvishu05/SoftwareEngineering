@@ -6,6 +6,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.Window;
 
 public class AccountActivity extends AppCompatActivity {
 
@@ -17,7 +18,7 @@ public class AccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
 
-        bottomNavigationView = (BottomNavigationView) findViewById(R.id.music_navigation);
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.accountNavigation);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

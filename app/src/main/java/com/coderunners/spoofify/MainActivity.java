@@ -75,12 +75,25 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     }
 
     @Override
-    public void changeFragment(int id)
+    public void changeFragment(int id, String selected)
     {
         switch(id)
         {
+            case 1:
+                mMainNav.setSelectedItemId(R.id.nav_home);
+                break;
+            case 2:
+                mMainNav.setSelectedItemId(R.id.nav_playist);
+                break;
             case 3:
-                setFragment(playerFragment);
+                mMainNav.setSelectedItemId(R.id.nav_search);
+                break;
+            case 4:
+                mMainNav.setSelectedItemId(R.id.nav_player);
+                //playerFragment.updateSongName(selected);
+                break;
+            case 5:
+                mMainNav.setSelectedItemId(R.id.nav_account);
                 break;
             default:
         }

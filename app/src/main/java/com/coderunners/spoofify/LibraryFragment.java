@@ -19,7 +19,7 @@ import android.widget.Toast;
 public class LibraryFragment extends Fragment
 {
     // Temporary test values
-    private String items[] = new String[] {"Apple", "Orange", "Banana", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"};
+    private String items[] = new String[] {"Song0", "Song1", "Song2", "Song3", "Song4", "Song5", "Song6", "Song7", "Song8", "Song9", "Song10", "Song11"};
     private OnFragmentInteractionListener fListener;
 
     public LibraryFragment() {
@@ -47,7 +47,7 @@ public class LibraryFragment extends Fragment
                 //Toast.makeText(getActivity(), items[position], Toast.LENGTH_SHORT).show();
                 // Loads the PlayerFragment view
                 fListener = (OnFragmentInteractionListener) getActivity();
-                fListener.changeFragment(3);
+                fListener.changeFragment(4, items[position]);
             }
         });
 

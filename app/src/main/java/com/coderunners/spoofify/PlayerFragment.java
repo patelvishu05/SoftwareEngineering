@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 /**
@@ -21,6 +22,7 @@ public class PlayerFragment extends Fragment
     private FloatingActionButton previous;
     private FloatingActionButton next;
     private MediaPlayer mp;
+    private TextView songName;
     private int resumeFlag=0;
     private int resumePosition;
 
@@ -84,8 +86,17 @@ public class PlayerFragment extends Fragment
             }
         });
 
+        songName = (TextView) view.findViewById(R.id.songName);
+        //songName.setText("Testing");
         // Inflate the layout for this fragment
         return view;
+    }
+
+    public void updateSongName(String song)
+    {
+        songName.setText(song);
+        songName.invalidate();
+        songName.requestLayout();
     }
 
 }

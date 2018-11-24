@@ -25,10 +25,9 @@ public class MainActivity extends AppCompatActivity {
         accountFragment = new AccountFragment();
         searchFragment = new SearchFragment();
         playerFragment = new PlayerFragment();
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setFragment(homeFragment);
         mMainFrame = (FrameLayout) findViewById(R.id.main_frame);
         mMainNav = (BottomNavigationView) findViewById(R.id.main_nav);
         //Listener: Change view when user selects navigation icon

@@ -53,6 +53,7 @@ public class HomeFragment extends Fragment {
         np.setUrl("https://fs.bitcoinmagazine.com/img/images/bcash1_week.max-800x800.jpg");
         np.setDescription(" “All Like That” is a certified banger. While Tisoki may primarily produce dubstep, we’ve heard him branch out before. He’s even done bass house before this year, on “Bring It Back” out on Monstercat. Though, “All Like That” is another beast entirely.  ");
         np.setPublishedAt("2018-11-23T10:42:59Z");
+        newsposts.clear();
         newsposts.add(np);
         NewsPost np1 = new NewsPost();
         np1.setAuthor("Patrick Montes");

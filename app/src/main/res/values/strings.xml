@@ -25,4 +25,5 @@
     <string name="end_time">05:00</string>
     <string name="album_art">Album Art</string>
     <string name="song_desc">Song Name</string>
+    <string name="nav_alarm">Alarm</string>
 </resources>

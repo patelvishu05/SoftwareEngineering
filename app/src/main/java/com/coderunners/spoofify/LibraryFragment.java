@@ -19,7 +19,8 @@ import android.widget.Toast;
 public class LibraryFragment extends Fragment
 {
     // Temporary test values
-    private String items[] = new String[] {"Song0", "Song1", "Song2", "Song3", "Song4", "Song5", "Song6", "Song7", "Song8", "Song9", "Song10", "Song11"};
+    //private String items[] = new String[] {"Song0", "Song1", "Song2", "Song3", "Song4", "Song5", "Song6", "Song7", "Song8", "Song9", "Song10", "Song11"};
+    private String streams[] = new String[] {"muse", "rhcp"};
     private OnFragmentInteractionListener fListener;
 
     public LibraryFragment() {
@@ -35,7 +36,7 @@ public class LibraryFragment extends Fragment
 
         ListView listView = view.findViewById(R.id.songlist);
 
-        ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, items);
+        ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, streams);
 
         listView.setAdapter(listViewAdapter);
 
@@ -47,7 +48,7 @@ public class LibraryFragment extends Fragment
                 //Toast.makeText(getActivity(), items[position], Toast.LENGTH_SHORT).show();
                 // Loads the PlayerFragment view
                 fListener = (OnFragmentInteractionListener) getActivity();
-                fListener.changeFragment(4, items[position]);
+                fListener.changeFragment(4, streams[position]);
             }
         });
 

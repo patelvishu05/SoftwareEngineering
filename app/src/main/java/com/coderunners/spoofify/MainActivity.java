@@ -89,8 +89,8 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
                 mMainNav.setSelectedItemId(R.id.nav_alarm);
                 break;
             case 4:
+                playerFragment.updateSongName(selected);
                 mMainNav.setSelectedItemId(R.id.nav_player);
-                //playerFragment.updateSongName(selected);
                 break;
             case 5:
                 mMainNav.setSelectedItemId(R.id.nav_account);

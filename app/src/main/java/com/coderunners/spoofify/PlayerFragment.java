@@ -25,6 +25,7 @@ public class PlayerFragment extends Fragment
     private TextView songName;
     private int resumeFlag=0;
     private int resumePosition;
+    private String streamName = "Default";
 
     public PlayerFragment() {
         // Required empty public constructor
@@ -87,16 +88,14 @@ public class PlayerFragment extends Fragment
         });
 
         songName = (TextView) view.findViewById(R.id.songName);
-        //songName.setText("Testing");
+        songName.setText(streamName);
         // Inflate the layout for this fragment
         return view;
     }
 
     public void updateSongName(String song)
     {
-        songName.setText(song);
-        songName.invalidate();
-        songName.requestLayout();
+        streamName = song;
     }
 
 }

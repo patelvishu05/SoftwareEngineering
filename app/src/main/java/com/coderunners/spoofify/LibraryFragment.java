@@ -35,7 +35,8 @@ public class LibraryFragment extends Fragment
 
         ListView listView = view.findViewById(R.id.songlist);
 
-        ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, items);
+        ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_list_item_1, items);
 
         listView.setAdapter(listViewAdapter);
 

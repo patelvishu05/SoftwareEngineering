@@ -1,52 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+   <!--<Button
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="hellooooo from the other sideeeeee!"/>
+    -->
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+      <ScrollView
+          android:layout_width="match_parent"
+          android:layout_height="match_parent">
+
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:orientation="vertical">
+            <EditText
+                android:textSize="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:hint="alarm name"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="30dp"
+                android:layout_gravity="center"
                 android:text="Time"
-                android:layout_gravity="center"/>
+                android:textSize="30dp" />
+
             <TimePicker
                 android:id="@+id/time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:timePickerMode="spinner"
-                android:layout_gravity="center">
-            </TimePicker>
+                android:layout_gravity="center"
+                android:timePickerMode="spinner"></TimePicker>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="30dp"
+                android:layout_gravity="center"
                 android:text="Date"
-                android:layout_gravity="center"/>
+                android:textSize="30dp" />
+
             <DatePicker
                 android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:datePickerMode="spinner"
+                android:layout_gravity="center"
                 android:calendarViewShown="false"
-                android:layout_gravity="center">
+                android:datePickerMode="spinner">
 
             </DatePicker>
-        </LinearLayout>
-    </ScrollView>
-    <Button
-        android:id="@+id/savealarm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:text="Save"/>
+             <Button
+                 android:id="@+id/savealarm"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="Save"/>
+         </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+      </ScrollView>
+   </LinearLayout>
+</FrameLayout>

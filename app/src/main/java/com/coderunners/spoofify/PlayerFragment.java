@@ -1,6 +1,7 @@
 package com.coderunners.spoofify;
 
 
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -10,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import java.io.IOException;
 
 
 /**
@@ -23,12 +26,17 @@ public class PlayerFragment extends Fragment
     private FloatingActionButton next;
     private MediaPlayer mp;
     private TextView songName;
+    private String URL;
+    private Boolean hasUrl;
     private int resumeFlag=0;
     private int resumePosition;
     private String streamName = "Default";
 
-    public PlayerFragment() {
+    public PlayerFragment()
+    {
         // Required empty public constructor
+        mp = new MediaPlayer();
+        hasUrl = false;
     }
 
     @Override
@@ -36,11 +44,23 @@ public class PlayerFragment extends Fragment
                              Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.fragment_player, container, false);
+
+        if(hasUrl) {
+            mp.setAudioStreamType(AudioManager.STREAM_MUSIC);
+            try {
+                mp.setDataSource(URL);
+                mp.prepareAsync();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
         play = (FloatingActionButton) view.findViewById(R.id.play);
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    mp = MediaPlayer.create(getActivity(),R.raw.jinglebells);
+                   // mp = MediaPlayer.create(getActivity(),R.raw.jinglebells);
                     mp.start();
             }
         });
@@ -95,7 +115,10 @@ public class PlayerFragment extends Fragment
 
     public void updateSongName(String song)
     {
+        //String url = "http://10.100.118.102:8000/rhcp";
         streamName = song;
+        URL = "http://10.100.118.102:8000" + song;
+        hasUrl = true;
     }
 
 }

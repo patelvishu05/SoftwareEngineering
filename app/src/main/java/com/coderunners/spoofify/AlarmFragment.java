@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -58,24 +59,28 @@ public class AlarmFragment extends Fragment{
         //        fListener.changeFragment(4, alarms[position]);
         //    }
         //});
+        /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                CreateAlarm fragment = new CreateAlarm();
+                FragmentManager manager = getFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.replace(R.id.main_frame, new CreateAlarm());
+                transaction.commit();
+            }
+        });
+        */
         addbutton = view.findViewById(R.id.addAlarm);
         addbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addbutton.setText("noooooo");
-                CreateAlarm fragment = new CreateAlarm();
+                //CreateAlarm fragment = new CreateAlarm();
                 FragmentManager manager = getFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
                 transaction.replace(R.id.main_frame, new CreateAlarm());
                 //transaction.add(R.id.main_frame, fragment);
                 //transaction.addToBackStack(null);
                 transaction.commit();
-                //setFragment(fragment);
-                //FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                //fragmentTransaction.addToBackStack(null);
-                //fragmentTransaction.add(R)
-                //fragmentTransaction.replace(R.layout.fragment_create_alarm);
-
             }
         });
         return view;

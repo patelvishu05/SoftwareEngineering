@@ -22,11 +22,13 @@
              android:layout_height="match_parent"
              android:orientation="vertical">
             <EditText
+                android:id="@+id/alarmname"
                 android:textSize="20dp"
+                android:layout_marginTop="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:hint="alarm name"/>
+                android:hint="Alarm Name"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -35,7 +37,7 @@
                 android:textSize="30dp" />
 
             <TimePicker
-                android:id="@+id/time"
+                android:id="@+id/timepicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -49,7 +51,7 @@
                 android:textSize="30dp" />
 
             <DatePicker
-                android:id="@+id/date"
+                android:id="@+id/datepicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     private HomeFragment homeFragment;
     private LibraryFragment libraryFragment;
     private AccountFragment accountFragment;
-    private SearchFragment  searchFragment;
+    private AlarmFragment alarmFragment;
     private PlayerFragment playerFragment;
 
     @Override
@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         homeFragment = new HomeFragment();
         libraryFragment = new LibraryFragment();
         accountFragment = new AccountFragment();
-        searchFragment = new SearchFragment();
+        alarmFragment = new AlarmFragment();
         playerFragment = new PlayerFragment();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -53,9 +53,9 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
                         //mMainNav.setItemBackgroundResource(R.color.colorAccent);
                         setFragment(playerFragment);
                         return true;
-                    case R.id.nav_search:
+                    case R.id.nav_alarm:
                        // mMainNav.setItemBackgroundResource(R.color.colorAccent);
-                        setFragment(searchFragment);
+                        setFragment(alarmFragment);
                         return true;
 
                     default:
@@ -86,11 +86,11 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
                 mMainNav.setSelectedItemId(R.id.nav_playist);
                 break;
             case 3:
-                mMainNav.setSelectedItemId(R.id.nav_search);
+                mMainNav.setSelectedItemId(R.id.nav_alarm);
                 break;
             case 4:
+                playerFragment.updateSongName(selected);
                 mMainNav.setSelectedItemId(R.id.nav_player);
-                //playerFragment.updateSongName(selected);
                 break;
             case 5:
                 mMainNav.setSelectedItemId(R.id.nav_account);

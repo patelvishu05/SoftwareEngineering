@@ -55,12 +55,20 @@ public class PlayerFragment extends Fragment
             }
         }
 
+        mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.start();
+            }
+        });
+
 
         play = (FloatingActionButton) view.findViewById(R.id.play);
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                    // mp = MediaPlayer.create(getActivity(),R.raw.jinglebells);
+                if(!mp.isPlaying())
                     mp.start();
             }
         });
@@ -116,6 +124,9 @@ public class PlayerFragment extends Fragment
     public void updateSongName(String song)
     {
         //String url = "http://10.100.118.102:8000/rhcp";
+        if (mp.isPlaying())
+            mp.stop();
+        mp.reset();
         streamName = song;
         URL = "";
         URL = "http://10.100.118.102:8000/" + song;

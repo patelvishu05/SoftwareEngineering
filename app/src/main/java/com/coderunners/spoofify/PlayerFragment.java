@@ -44,11 +44,11 @@ public class PlayerFragment extends Fragment
                              Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.fragment_player, container, false);
-
         if(hasUrl) {
             mp.setAudioStreamType(AudioManager.STREAM_MUSIC);
             try {
                 mp.setDataSource(URL);
+//                mp.setDataSource("http://10.100.118.102:8000/rhcp");
                 mp.prepareAsync();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -117,7 +117,8 @@ public class PlayerFragment extends Fragment
     {
         //String url = "http://10.100.118.102:8000/rhcp";
         streamName = song;
-        URL = "http://10.100.118.102:8000" + song;
+        URL = "";
+        URL = "http://10.100.118.102:8000/" + song;
         hasUrl = true;
     }
 

@@ -117,7 +117,8 @@ public class PlayerFragment extends Fragment
     {
         //String url = "http://10.100.118.102:8000/rhcp";
         streamName = song;
-        URL = "http://10.100.118.102:8000" + song;
+        URL = "http://10.100.118.102:8000/" + song;
+        System.out.println(URL);
         hasUrl = true;
     }
 

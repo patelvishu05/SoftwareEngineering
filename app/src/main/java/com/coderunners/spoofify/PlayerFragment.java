@@ -1,6 +1,7 @@
 package com.coderunners.spoofify;
 
 
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -10,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import java.io.IOException;
 
 
 /**
@@ -21,13 +24,14 @@ public class PlayerFragment extends Fragment
     private FloatingActionButton pause;
     private FloatingActionButton previous;
     private FloatingActionButton next;
-    private MediaPlayer mp;
+    private static MediaPlayer mp;
     private TextView songName;
     private int resumeFlag=0;
     private int resumePosition;
 
     public PlayerFragment() {
         // Required empty public constructor
+        mp = new MediaPlayer();
     }
 
     @Override
@@ -35,12 +39,31 @@ public class PlayerFragment extends Fragment
                              Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.fragment_player, container, false);
+        String sourceURL = "https://freemusicdownloads.world/wp-content/uploads/2017/05/Justin-Bieber-Sorry-PURPOSE-The-Movement.mp3";
+//        String sourceURL = "http://10.100.118.102:8000/muse";
+        mp = new MediaPlayer();
+        mp.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
+        try {
+            mp.setDataSource(sourceURL);
+            mp.prepareAsync();
+
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         play = (FloatingActionButton) view.findViewById(R.id.play);
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    mp = MediaPlayer.create(getActivity(),R.raw.jinglebells);
+                if(mp.isPlaying() == false)
+                {
+
+                    //mp = MediaPlayer.create(getActivity(), R.raw.jinglebells);
+                    //mp = MediaPlayer.create()
                     mp.start();
+                }
             }
         });
 
@@ -87,7 +110,6 @@ public class PlayerFragment extends Fragment
         });
 
         songName = (TextView) view.findViewById(R.id.songName);
-        //songName.setText("Testing");
         // Inflate the layout for this fragment
         return view;
     }

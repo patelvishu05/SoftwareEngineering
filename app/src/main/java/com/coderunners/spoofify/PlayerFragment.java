@@ -22,16 +22,20 @@ public class PlayerFragment extends Fragment
 {
     private FloatingActionButton play;
     private FloatingActionButton pause;
-    private FloatingActionButton previous;
-    private FloatingActionButton next;
+//    private FloatingActionButton previous;
+//    private FloatingActionButton next;
     private static MediaPlayer mp;
     private TextView songName;
+    private String URL;
+    private Boolean hasUrl;
     private int resumeFlag=0;
     private int resumePosition;
+    private String streamName = "Default";
 
-    public PlayerFragment() {
-        // Required empty public constructor
+    public PlayerFragment()
+    {
         mp = new MediaPlayer();
+        hasUrl = false;
     }
 
     @Override
@@ -39,31 +43,34 @@ public class PlayerFragment extends Fragment
                              Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.fragment_player, container, false);
-        String sourceURL = "https://freemusicdownloads.world/wp-content/uploads/2017/05/Justin-Bieber-Sorry-PURPOSE-The-Movement.mp3";
-//        String sourceURL = "http://10.100.118.102:8000/muse";
-        mp = new MediaPlayer();
-        mp.setAudioStreamType(AudioManager.STREAM_MUSIC);
-
-        try {
-            mp.setDataSource(sourceURL);
-            mp.prepareAsync();
-
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(hasUrl) {
+            mp.setAudioStreamType(AudioManager.STREAM_MUSIC);
+            try {
+                mp.setDataSource(URL);
+//                mp.setDataSource("http://10.100.118.102:8000/rhcp");
+                mp.prepareAsync();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+
+        mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp)
+            {
+                mp.start();
+            }
+        });
+
+
         play = (FloatingActionButton) view.findViewById(R.id.play);
         play.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                if(mp.isPlaying() == false)
-                {
+            public void onClick(View v)
+            {
 
-                    //mp = MediaPlayer.create(getActivity(), R.raw.jinglebells);
-                    //mp = MediaPlayer.create()
+                if(!mp.isPlaying())
                     mp.start();
-                }
             }
         });
 
@@ -87,38 +94,23 @@ public class PlayerFragment extends Fragment
             }
         });
 
-        previous = (FloatingActionButton) view.findViewById(R.id.previous);
-        previous.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(mp.isPlaying())
-                    mp.stop();
-                mp = MediaPlayer.create(getActivity(),R.raw.chainsmokers);
-                mp.start();
-            }
-        });
-
-        next = (FloatingActionButton) view.findViewById(R.id.next);
-        next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(mp.isPlaying())
-                    mp.stop();
-                mp = MediaPlayer.create(getActivity(),R.raw.deckthehalls);
-                mp.start();
-            }
-        });
 
         songName = (TextView) view.findViewById(R.id.songName);
-        // Inflate the layout for this fragment
+        songName.setText(streamName);
+
         return view;
     }
 
     public void updateSongName(String song)
     {
-        songName.setText(song);
-        songName.invalidate();
-        songName.requestLayout();
+        //String url = "http://10.100.118.102:8000/rhcp";
+        if (mp.isPlaying())
+            mp.stop();
+        mp.reset();
+        streamName = song;
+        URL = "";
+        URL = "http://10.100.118.102:8000/" + song;
+        hasUrl = true;
     }
 
 }

@@ -30,7 +30,7 @@ public class PlayerFragment extends Fragment
     private Boolean hasUrl;
     private int resumeFlag=0;
     private int resumePosition;
-    private String streamName = "Default";
+    private String streamName = "No Stream Selected";
 
     public PlayerFragment()
     {
@@ -67,7 +67,6 @@ public class PlayerFragment extends Fragment
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                   // mp = MediaPlayer.create(getActivity(),R.raw.jinglebells);
                 if(!mp.isPlaying())
                     mp.start();
             }
@@ -78,40 +77,10 @@ public class PlayerFragment extends Fragment
             @Override
             public void onClick(View v)
             {
-                if (mp.isPlaying() && resumeFlag == 0)
+                if (mp.isPlaying())
                 {
                     mp.pause();
-                    resumePosition = mp.getCurrentPosition();
                 }
-                if((!mp.isPlaying()) && resumeFlag == 1)
-                {
-                    mp.seekTo(resumePosition);
-                    mp.start();
-                }
-                if(resumeFlag == 0) resumeFlag = 1;
-                else resumeFlag = 0;
-            }
-        });
-
-        previous = (FloatingActionButton) view.findViewById(R.id.previous);
-        previous.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(mp.isPlaying())
-                    mp.stop();
-                mp = MediaPlayer.create(getActivity(),R.raw.chainsmokers);
-                mp.start();
-            }
-        });
-
-        next = (FloatingActionButton) view.findViewById(R.id.next);
-        next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(mp.isPlaying())
-                    mp.stop();
-                mp = MediaPlayer.create(getActivity(),R.raw.deckthehalls);
-                mp.start();
             }
         });
 
@@ -121,15 +90,16 @@ public class PlayerFragment extends Fragment
         return view;
     }
 
-    public void updateSongName(String song)
+    public void updateSongName(String streamName, String streamExt)
     {
-        //String url = "http://10.100.118.102:8000/rhcp";
         if (mp.isPlaying())
+        {
             mp.stop();
+        }
+
         mp.reset();
-        streamName = song;
-        URL = "";
-        URL = "http://10.100.118.102:8000/" + song;
+        this.streamName = streamName;
+        URL = "http://10.100.118.102:8000/" + streamExt;
         hasUrl = true;
     }
 

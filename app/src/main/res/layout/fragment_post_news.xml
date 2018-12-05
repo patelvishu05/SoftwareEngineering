@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PostNewsFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/ScrollView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:orientation="vertical"
+            android:layout_height="fill_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Post"
+                android:layout_marginLeft="125dp"
+                android:textSize="10pt">
+            </TextView>
+
+            <TextView
+                android:id="@+id/TextViewTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Enter Title:"
+                android:textSize="10pt">
+            </TextView>
+
+            <EditText
+                android:id="@+id/EditTextTitle"
+                android:layout_height="wrap_content"
+                android:hint="News Post Title"
+                android:inputType="textPersonName"
+                android:layout_width="fill_parent">
+            </EditText>
+            <TextView
+                android:id="@+id/TextViewDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Enter Description:"
+                android:textSize="10pt">
+            </TextView>
+            <EditText
+                android:id="@+id/EditTextDescription"
+                android:layout_height="wrap_content"
+                android:hint="Description"
+                android:inputType="textMultiLine"
+                android:lines="7"
+                android:layout_width="fill_parent">
+            </EditText>
+
+            <TextView
+                android:id="@+id/TextViewURL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Enter Image URL or leave blank for default:"
+                android:textSize="10pt">
+            </TextView>
+            <EditText
+                android:id="@+id/EditTextURL"
+                android:layout_height="wrap_content"
+                android:hint="url"
+                android:inputType="textUri"
+                android:layout_width="fill_parent">
+            </EditText>
+
+            <Button
+                android:id="@+id/submitPost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Submit Post"
+                android:layout_marginLeft="125dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

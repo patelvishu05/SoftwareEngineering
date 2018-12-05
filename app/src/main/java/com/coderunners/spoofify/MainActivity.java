@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     }
 
     @Override
-    public void changeFragment(int id, String selected)
+    public void changeFragment(int id, String streamName, String streamExt)
     {
         switch(id)
         {
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
                 mMainNav.setSelectedItemId(R.id.nav_alarm);
                 break;
             case 4:
-                playerFragment.updateSongName(selected);
+                playerFragment.updateSongName(streamName, streamExt);
                 mMainNav.setSelectedItemId(R.id.nav_player);
                 break;
             case 5:

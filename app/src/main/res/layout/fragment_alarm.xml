@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AlarmFragment">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:text="Alarm"
-        android:gravity="center_horizontal"
-        android:textSize="20dp"
-        android:id="@+id/alarmText"
-        />
+    tools:context=".AlarmFragment"
+    android:id="@+id/display">
 
-    <TimePicker
-        android:layout_marginTop="40dp"
-        android:id="@+id/timePicker"
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="wrap_content">
 
-        />
-    <TextView
+    <ListView
+        android:id="@+id/alarmlist"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="200dp"
-        android:layout_above="@+id/alarmSetButton"
-        android:text="Current Alarm: None"
-        android:id="@+id/currentAlarmText"
+        android:layout_height="wrap_content">
 
-        />
-    <Button
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/timePicker"
-        android:gravity="center_horizontal"
-        android:layout_centerInParent="true"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="40dp"
-        android:text="Set Alarm"
-        android:id="@+id/alarmSetButton"
-        />
+    </ListView>
+        <Button
+            android:id="@+id/cancel2"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="Done"
+            />
+        <Button
+            android:id="@+id/delete2"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="Delete"/>
+        <Button
+            android:id="@+id/addAlarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="Add Alarm"
+            />
+    </RelativeLayout>
 
-</RelativeLayout>
+</FrameLayout>

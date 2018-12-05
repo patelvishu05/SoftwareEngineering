@@ -1,6 +1,8 @@
 package com.coderunners.spoofify;
 
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -10,7 +12,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.coderunners.spoofify.Model.SingleMediaPlayer;
 
 import java.io.IOException;
 
@@ -24,10 +29,12 @@ public class PlayerFragment extends Fragment
     private FloatingActionButton pause;
     private FloatingActionButton previous;
     private FloatingActionButton next;
-    private MediaPlayer mp;
+    private SingleMediaPlayer mp;
     private TextView songName;
     private String URL;
     private Boolean hasUrl;
+    private ImageView albumArt;
+    private Bitmap image;
     private int resumeFlag=0;
     private int resumePosition;
     private String streamName = "No Stream Selected";
@@ -35,7 +42,7 @@ public class PlayerFragment extends Fragment
     public PlayerFragment()
     {
         // Required empty public constructor
-        mp = new MediaPlayer();
+        mp = SingleMediaPlayer.getInstance();
         hasUrl = false;
     }
 
@@ -86,6 +93,13 @@ public class PlayerFragment extends Fragment
 
         songName = (TextView) view.findViewById(R.id.songName);
         songName.setText(streamName);
+
+        albumArt = (ImageView) view.findViewById(R.id.albumArt);
+        if(hasUrl)
+        {
+            //albumArt.setImageResource(getResources().getDrawable(R.raw.muse););
+
+        }
         // Inflate the layout for this fragment
         return view;
     }

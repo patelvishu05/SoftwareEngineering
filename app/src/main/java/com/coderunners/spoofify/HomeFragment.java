@@ -116,7 +116,7 @@ public class HomeFragment extends Fragment {
         //writeToFile(json, this.getContext());
 
         SharedPreferences SP = this.getContext().getSharedPreferences("newsfeed.json", 0);
-        //SharedPreferences.Editor editor= SP.edit();
+        //SharedPreferences.Editor editor= SP.edit();//here
         //editor.putString("posts", json);
         //editor.commit();
         String jsonToParse = SP.getString("posts", null);

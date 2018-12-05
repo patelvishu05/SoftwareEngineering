@@ -19,8 +19,8 @@ import android.widget.Toast;
 public class LibraryFragment extends Fragment
 {
     // Temporary test values
-    private String items[] = new String[] {"Muse", "Red Hot Chili Peppers"};
-    private String links[] = new String[] {"muse", "rhcp"};
+    private String items[] = new String[] {"Muse", "Red Hot Chili Peppers", "Elvis Presley", "Jimi Hendrix", "Gaming", "Tom Petty & The Heartbreakers"};
+    private String links[] = new String[] {"muse", "rhcp", "elvis", "hendrix", "nintendo", "petty"};
     private OnFragmentInteractionListener fListener;
 
     public LibraryFragment() {

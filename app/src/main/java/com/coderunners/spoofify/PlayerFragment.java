@@ -3,6 +3,7 @@ package com.coderunners.spoofify;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -18,6 +19,9 @@ import android.widget.TextView;
 import com.coderunners.spoofify.Model.SingleMediaPlayer;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
 /**
@@ -35,10 +39,12 @@ public class PlayerFragment extends Fragment
     private Bitmap image;
     private String streamName = "No Stream Selected";
 
+
     public PlayerFragment()
     {
         mp = SingleMediaPlayer.getInstance();
         hasUrl = false;
+
     }
 
     @Override
@@ -95,7 +101,14 @@ public class PlayerFragment extends Fragment
         albumArt = (ImageView) view.findViewById(R.id.albumArt);
         if(hasUrl)
         {
-            //albumArt.setImageResource(getResources().getDrawable(R.raw.muse););
+            switch(streamName.toLowerCase())
+            {
+                case "muse" : albumArt.setImageResource(R.drawable.album_muse);
+                                break;
+                default : albumArt.setImageResource(R.drawable.default_album_art);
+                                break;
+
+            }
 
         }
         // Inflate the layout for this fragment

@@ -3,11 +3,13 @@ package com.coderunners.spoofify;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+
 import android.util.Log;
 
 public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
+
         Log.e("In reciver", "yay");
 
         //TODO: fetch extra string from the intent
@@ -21,4 +23,5 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         context.startService(intent1);
     }
+
 }

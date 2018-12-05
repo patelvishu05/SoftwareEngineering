@@ -1,11 +1,13 @@
 package com.coderunners.spoofify;
 
+
 import android.app.AlarmManager;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -16,8 +18,10 @@ import com.coderunners.spoofify.Model.Alarm;
 import java.util.ArrayList;
 
 public class AdapterAlarm extends ArrayAdapter<Alarm> {
+  
     private Switch state;
     public View customview;
+
     public AdapterAlarm(Context context, ArrayList<Alarm> alarms) {
         super(context, R.layout.alarm_item, alarms);
     }
@@ -76,6 +80,5 @@ public class AdapterAlarm extends ArrayAdapter<Alarm> {
 
 
         return customview;
-
     }
 }

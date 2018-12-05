@@ -24,11 +24,13 @@ import android.widget.Toast;
 import com.coderunners.spoofify.Model.Alarm;
 
 import java.util.ArrayList;
+
 import java.util.Calendar;
 import java.util.List;
 
 import static android.content.Context.ALARM_SERVICE;
 import static android.support.v4.content.ContextCompat.getSystemService;
+
 
 
 /**
@@ -45,6 +47,7 @@ public class AlarmFragment extends Fragment{
     private DatePickerDialog datePickerDialog;
     private TimePickerDialog timePickerDialog;
     private String str;
+
     //private AlarmFragmentListener listener;
     //private String alarms[] = new String[] {"alarm 1", "alarm 2", "alarm 3"};
     private ArrayList<Alarm> alarms = new ArrayList<>();
@@ -56,6 +59,7 @@ public class AlarmFragment extends Fragment{
     public AlarmFragment() {
         // Required empty public constructor
     }
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -75,9 +79,9 @@ public class AlarmFragment extends Fragment{
         alarmAdapter = new AdapterAlarm(this.getActivity(),alarms);
         ListView listView = view.findViewById(R.id.alarmlist);
         listView.setAdapter(alarmAdapter);
+
         delete = view.findViewById(R.id.delete2);
         cancel = view.findViewById(R.id.cancel2);
-
 
         //ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(
         //        getActivity(), android.R.layout.simple_list_item_1, alarms);
@@ -131,6 +135,7 @@ public class AlarmFragment extends Fragment{
                 //transaction.addToBackStack(null);
                 transaction.commit();
                 */
+
             }
         });
         return view;

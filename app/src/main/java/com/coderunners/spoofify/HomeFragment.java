@@ -1,19 +1,32 @@
 package com.coderunners.spoofify;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.view.menu.MenuView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.util.Log;
 
 import com.coderunners.spoofify.Model.NewsPost;
+import com.coderunners.spoofify.Model.Posts;
+import com.google.gson.Gson;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,16 +35,39 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class HomeFragment extends Fragment {
+    private static final Object MODE_PRIVATE = 0;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private List<NewsPost>  newsposts = new ArrayList<>();
     private Adapter adapter;
     public String TAG = HomeFragment.class.getSimpleName();
-
+    public Posts posts;
 
     public HomeFragment() {
         // Required empty public constructor
     }
+
+    public String inputStreamToString(InputStream inputStream) {
+        try {
+            byte[] bytes = new byte[inputStream.available()];
+            inputStream.read(bytes, 0, bytes.length);
+            String json = new String(bytes);
+            return json;
+        } catch (IOException e) {
+            return null;
+        }
+    }
+    private void writeToFile(String data, Context context) {
+        try {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("nfdata.json", Context.MODE_PRIVATE));
+            outputStreamWriter.write(data);
+            outputStreamWriter.close();
+        }
+        catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e.toString());
+        }
+    }
+
 
 
     @Override
@@ -71,7 +107,23 @@ public class HomeFragment extends Fragment {
         newsposts.add(np1);
         newsposts.add(np2);
 
+        //newsposts.clear();
+       // String myJson= inputStreamToString(getResources().openRawResource(R.raw.newsfeed_data));
+        Gson gson = new Gson();
+        posts = new Posts();
+        posts.setNewsPost(newsposts);
+        String json = gson.toJson(posts);
+        //writeToFile(json, this.getContext());
 
+        SharedPreferences SP = this.getContext().getSharedPreferences("newsfeed.json", 0);
+        //SharedPreferences.Editor editor= SP.edit();//here
+        //editor.putString("posts", json);
+        //editor.commit();
+        String jsonToParse = SP.getString("posts", null);
+
+
+        posts  = gson.fromJson(jsonToParse, Posts.class);
+        newsposts = posts.getNewsPost();
         adapter = new Adapter(newsposts, getActivity());
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();

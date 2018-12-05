@@ -26,4 +26,8 @@
     <string name="album_art">Album Art</string>
     <string name="song_desc">Song Name</string>
     <string name="nav_alarm">Alarm</string>
+    <string name="enter_full_name">Enter Full Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="name">Name</string>
+    <string name="register">Register</string>
 </resources>

@@ -27,21 +27,16 @@ public class PlayerFragment extends Fragment
 {
     private FloatingActionButton play;
     private FloatingActionButton pause;
-    private FloatingActionButton previous;
-    private FloatingActionButton next;
     private SingleMediaPlayer mp;
     private TextView songName;
     private String URL;
     private Boolean hasUrl;
     private ImageView albumArt;
     private Bitmap image;
-    private int resumeFlag=0;
-    private int resumePosition;
     private String streamName = "No Stream Selected";
 
     public PlayerFragment()
     {
-        // Required empty public constructor
         mp = SingleMediaPlayer.getInstance();
         hasUrl = false;
     }
@@ -51,13 +46,16 @@ public class PlayerFragment extends Fragment
                              Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.fragment_player, container, false);
-        if(hasUrl) {
+        if(hasUrl)
+        {
             mp.setAudioStreamType(AudioManager.STREAM_MUSIC);
-            try {
+            try
+            {
                 mp.setDataSource(URL);
-//                mp.setDataSource("http://10.100.118.102:8000/rhcp");
                 mp.prepareAsync();
-            } catch (IOException e) {
+            }
+            catch (IOException e)
+            {
                 e.printStackTrace();
             }
         }

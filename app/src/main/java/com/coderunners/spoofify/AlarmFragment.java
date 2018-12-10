@@ -206,7 +206,7 @@ public class AlarmFragment extends Fragment{
     }
 
 
-    private void deleteClick(int i){
+    private void deleteClick(final int i){
         addbutton.setVisibility(View.GONE);
         delete.setVisibility(View.VISIBLE);
         cancel.setVisibility(View.VISIBLE);
@@ -216,6 +216,7 @@ public class AlarmFragment extends Fragment{
             @Override
             public void onClick(View view) {
                 //delete.setText("Here");
+                alarms.get(index).manager.cancel(alarms.get(index).pendingIntent);
                 alarms.remove(index);
                 alarmAdapter.notifyDataSetChanged();
             }

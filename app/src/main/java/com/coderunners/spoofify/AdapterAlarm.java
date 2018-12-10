@@ -60,12 +60,13 @@ public class AdapterAlarm extends ArrayAdapter<Alarm> {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(getItem(position).st == 0){//was 1
                     //state.isChecked()
+                    getItem(position).intent.putExtra("extra", "on");
                     Toast.makeText(customview.getContext(), "Alarm Turned On",Toast.LENGTH_SHORT).show();
                     getItem(position).st = 1; //was 0
                     getItem(position).manager.set(AlarmManager.RTC_WAKEUP, getItem(position).mili, getItem(position).pendingIntent);
                 }
                 else{
-                    getItem(position).intent.putExtra("extra", "no");
+                    getItem(position).intent.putExtra("extra", "off");
                     getItem(position).st = 0; //was 1
                     getItem(position).manager.cancel(getItem(position).pendingIntent);
                     getContext().sendBroadcast(getItem(position).intent);

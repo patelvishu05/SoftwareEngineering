@@ -103,10 +103,27 @@ public class PlayerFragment extends Fragment
         {
             switch(streamName.toLowerCase())
             {
-                case "muse" : albumArt.setImageResource(R.drawable.album_muse);
-                                break;
-                default : albumArt.setImageResource(R.drawable.default_album_art);
-                                break;
+                case "muse" :
+                    albumArt.setImageResource(R.drawable.album_muse);
+                    break;
+                case "red hot chili peppers" :
+                    albumArt.setImageResource(R.drawable.album_rhcp);
+                    break;
+                case "elvis presley" :
+                    albumArt.setImageResource(R.drawable.album_elvis);
+                    break;
+                case "jimi hendrix" :
+                    albumArt.setImageResource(R.drawable.album_hendrix);
+                    break;
+                case "gaming" :
+                    albumArt.setImageResource(R.drawable.album_nintendo);
+                    break;
+                case "tom petty & the heartbreakers" :
+                    albumArt.setImageResource(R.drawable.album_petty);
+                    break;
+                default :
+                    albumArt.setImageResource(R.drawable.default_album_art);
+                    break;
 
             }
 

@@ -19,6 +19,8 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.content.Context.MODE_WORLD_WRITEABLE;
+
 
 public class PostNewsFragment extends Fragment {
 

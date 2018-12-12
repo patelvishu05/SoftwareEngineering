@@ -7,7 +7,11 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.Button;
+import com.coderunners.spoofify.R;
+//import com.coderunners.spoofify.Model.AccountActivity;
 
 public class MainActivity extends AppCompatActivity implements OnFragmentInteractionListener {
     private BottomNavigationView mMainNav;
@@ -17,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     private AccountFragment accountFragment;
     private AlarmFragment alarmFragment;
     private PlayerFragment playerFragment;
+    private Button makeAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

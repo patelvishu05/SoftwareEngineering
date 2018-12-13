@@ -3,6 +3,7 @@ package com.coderunners.spoofify;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,7 @@ import android.widget.Toast;
  */
 public class AccountFragment extends Fragment
 {
-    private String options[] = {"Update Email", "Update Password", "Update Personal Details", "Contact Us", "Delete Account"};
+    private String options[] = {"Update Email", "Update Password", "Update Personal Details", "Contact Us", "Delete Account", "Post News"};
     private ListView listView;
 
     public AccountFragment() {
@@ -47,6 +48,14 @@ public class AccountFragment extends Fragment
                 if(position == 4)
                 {
                     Toast.makeText(getActivity(), "I'm Sorry, Dave.  I'm Afraid I Can't Do That.", Toast.LENGTH_SHORT).show();
+                }
+                else if(position == 5){
+                    Toast.makeText(getActivity(), "Employee Feature Activated", Toast.LENGTH_SHORT).show();
+                    Fragment fragment = new PostNewsFragment();
+                    FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.main_frame, fragment);
+                    fragmentTransaction.commit();
+
                 }
                 else
                 {

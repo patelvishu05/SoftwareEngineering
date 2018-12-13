@@ -23,6 +23,7 @@ Due to some technical issues that was observed earlier during the project phases
 ## Run the application
 1. To run the application wait for all processes to complete after successful cloning.
 2. The application can be run using the Green play button ► from the upper left corner.
+   (if you have not set up an emulator device, you will need to do so)
 3. Please wait until all build processes are successfully completed, and then you 
    should start seeing the app running on emulator.
 
@@ -30,6 +31,8 @@ Due to some technical issues that was observed earlier during the project phases
 > While working on the project towards the end, we had issues running the app on personal
   devices. The app was working for only 1 of our Team Member. Issues may were because of the
   emulator.
+  We were able to circumvent this issue by installing Genymotion, an alternate Android Device Emulator.
+  Additionally, you will need to install a plugin for Genymotion in Android Studio to use the emulator.
 
 ## Contributors
 - Juan-Diaz Sada (Product Owner) 

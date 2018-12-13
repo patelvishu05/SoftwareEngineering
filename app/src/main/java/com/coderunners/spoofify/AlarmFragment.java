@@ -5,7 +5,9 @@ import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -22,12 +24,16 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.coderunners.spoofify.Model.Alarm;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 import static android.content.Context.ALARM_SERVICE;
+import static android.content.Context.MODE_PRIVATE;
 import static android.support.v4.content.ContextCompat.getSystemService;
 
 
@@ -45,10 +51,9 @@ public class AlarmFragment extends Fragment{
     private DatePickerDialog datePickerDialog;
     private TimePickerDialog timePickerDialog;
     private String str;
-    //private AlarmFragmentListener listener;
     //private String alarms[] = new String[] {"alarm 1", "alarm 2", "alarm 3"};
-    private ArrayList<Alarm> alarms = new ArrayList<>();
-    //private List<Alarm> alarms = new ArrayList<>();
+    //private ArrayList<Alarm> alarms = new ArrayList<>();
+    private ArrayList<Alarm> alarms;
     //Alarm single = new Alarm("item1", "04:32", "12-05-67");
     private OnFragmentInteractionListener fListener;
     //List<Alarm> alarms = new ArrayList<Alarm>();
@@ -61,14 +66,12 @@ public class AlarmFragment extends Fragment{
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //alarms.add(new Alarm("test", "08:09AM", "12-05-2018"));
+        loadData(getActivity());
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        //Alarm a = new Alarm("alarm 1", "09:45", "12-05-92");
-        //alarms.add(a);
-        //Toast.makeText(getActivity(), "Entering Alarm", Toast.LENGTH_LONG).show();
 
         View view = inflater.inflate(R.layout.fragment_alarm, container, false);
         alarmAdapter = new AdapterAlarm(this.getActivity(),alarms);
@@ -77,42 +80,12 @@ public class AlarmFragment extends Fragment{
         delete = view.findViewById(R.id.delete2);
         cancel = view.findViewById(R.id.cancel2);
 
-
-        //ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(
-        //        getActivity(), android.R.layout.simple_list_item_1, alarms);
-        //listView.setAdapter(listViewAdapter);
-        //listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-
-        //    @Override
-        //    public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-        //    {
-        //Toast.makeText(getActivity(), items[position], Toast.LENGTH_SHORT).show();
-        // Loads the PlayerFragment view
-        //        fListener = (OnFragmentInteractionListener) getActivity();
-        //        fListener.changeFragment(4, alarms[position]);
-        //    }
-        //});
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                //Bundle bundle = new Bundle();
-                //bundle.putInt("item_index", i);
-                //FragmentManager manager = getFragmentManager();
-                //FragmentTransaction transaction = manager.beginTransaction();
-                //there was a Delete Alarm fragment here
-                //fragment.setArguments(bundle);
-                //transaction.add(R.id.main_frame, fragment);
-                //transaction.commit();
-
                 deleteClick(i);
-                //cancelClick();
-                //Create Alarm fragment = new Create Alarm();
-                //FragmentManager manager = getFragmentManager();
-                //FragmentTransaction transaction = manager.beginTransaction();
-                //transaction.replace(R.id.main_frame, new Create Alarm());
-                //transaction.commit();
+
             }
         });
 
@@ -122,14 +95,7 @@ public class AlarmFragment extends Fragment{
             public void onClick(View view) {
 
                 createAlarm();
-               /*//Create Alarm fragment = new Create Alarm();
-               FragmentManager manager = getFragmentManager();
-               FragmentTransaction transaction = manager.beginTransaction();
-               transaction.replace(R.id.main_frame, new Create Alarm());
-               //transaction.add(R.id.main_frame, fragment);
-               //transaction.addToBackStack(null);
-               transaction.commit();
-               */
+
             }
         });
         return view;
@@ -180,19 +146,24 @@ public class AlarmFragment extends Fragment{
                                 calendar.set(Calendar.DAY_OF_MONTH, day);
                                 String date = String.format("%02d-%02d-%04d", month+1, day, year);
 
-
                                 //INTENT
                                 //PENDING INTENT
                                 //ALARM MANAGER
                                 Intent intent = new Intent(getActivity(), AlarmReceiver.class);
                                 //TODO: put in string into intent, tells the clock that you pressed on
                                 intent.putExtra("extra", "on");
+                                //PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity(), 0,intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                                //AlarmManager manager = (AlarmManager)getActivity().getSystemService(ALARM_SERVICE);
+                                //manager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),pendingIntent);
+                                //Alarm a = new Alarm("Alarm:", str, date, 1, calendar.getTimeInMillis(), intent, pendingIntent, manager);
 
-                                PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity(), 0,intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                                //PendingIntent pending = PendingIntent.getBroadcast(getActivity(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                                PendingIntent pending = PendingIntent.getBroadcast(getActivity(), alarms.size()-1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
                                 AlarmManager manager = (AlarmManager)getActivity().getSystemService(ALARM_SERVICE);
-                                manager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),pendingIntent);
-                                Alarm a = new Alarm("Alarm:", str, date, 1, calendar.getTimeInMillis(), intent, pendingIntent, manager);
+                                manager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pending);
+                                Alarm a = new Alarm("Alarm:", str, date, 1, calendar.getTimeInMillis());
                                 alarms.add(a);
+                                saveData(getActivity());
                                 alarmAdapter.notifyDataSetChanged();
                             }
                         }, year, month, dayOfMonth);
@@ -216,9 +187,20 @@ public class AlarmFragment extends Fragment{
             @Override
             public void onClick(View view) {
                 //delete.setText("Here");
-                alarms.get(index).manager.cancel(alarms.get(index).pendingIntent);
+                //alarms.get(index).manager.cancel(alarms.get(index).pendingIntent);
+                //getContext().sendBroadcast(alarms.get(index).intent);
+                Intent intent = new Intent(getActivity(), AlarmReceiver.class);
+                intent.putExtra("extra", "off");
+                PendingIntent pending = PendingIntent.getBroadcast(getActivity(), alarms.size()-1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                AlarmManager manager = (AlarmManager)getContext().getSystemService(ALARM_SERVICE);
+                manager.cancel(pending);
+                getActivity().sendBroadcast(intent);
                 alarms.remove(index);
+                saveData(getActivity());
                 alarmAdapter.notifyDataSetChanged();
+                delete.setVisibility(View.GONE);
+                cancel.setVisibility(View.GONE);
+                addbutton.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -233,16 +215,24 @@ public class AlarmFragment extends Fragment{
         });
 
     }
-
-    public void removeAlarm(int i){
-        alarms.remove(i);
-        alarmAdapter.notifyDataSetChanged();
+    private void saveData(Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences("shared preferences", MODE_PRIVATE);
+        //SharedPreferences sharedPrefrences= getSharedPreferences("shared preferences", MODE_PRIVATE)
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(alarms);
+        editor.putString("alarms list", json);
+        editor.apply();
     }
-    public void addAlarm(Alarm alarm){
-        Toast.makeText(getActivity(), "Add",
-                Toast.LENGTH_LONG).show();
-        alarms.add(alarm);
-        alarmAdapter.notifyDataSetChanged();
+    private void loadData(Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences("shared preferences", MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("alarms list", null);
+        Type type = new TypeToken<ArrayList<Alarm>>(){}.getType();
+        alarms = gson.fromJson(json,type);
+        if (alarms == null){
+            alarms = new ArrayList<>();
+        }
     }
     @Override
     public void onDetach(){

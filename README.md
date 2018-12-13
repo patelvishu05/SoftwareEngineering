@@ -33,6 +33,9 @@ Due to some technical issues that was observed earlier during the project phases
   emulator.
   We were able to circumvent this issue by installing Genymotion, an alternate Android Device Emulator.
   Additionally, you will need to install a plugin for Genymotion in Android Studio to use the emulator.
+  
+## Logging In
+> Currently, the application does not verify login credentials.  In order to log in, just provide any email address, and any password.
 
 ## Contributors
 - Juan-Diaz Sada (Product Owner) 

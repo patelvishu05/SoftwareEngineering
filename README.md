@@ -1,8 +1,8 @@
 # :notes: Spoofify :notes:
  A very awesome Android music streaming app that allows user to stream music from their phone using this app.
  
- >**Note**: Presentation branch is the working branch. Please consider that as master branch for the project. \
-Due to some technical issues that was observed earlier during the project phases. We decided to use presentation as master.
+ >**Note**: editedpresentation branch is the working branch. Please consider that as master branch for the project. \
+Due to some technical issues that was observed earlier during the project phases. We decided to use editedpresentation as master.
  
  ## Clone the application
 1.  Open Android Studio.

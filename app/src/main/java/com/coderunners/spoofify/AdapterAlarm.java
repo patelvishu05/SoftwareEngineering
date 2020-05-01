@@ -1,7 +1,9 @@
 package com.coderunners.spoofify;
 
 import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,16 +61,34 @@ public class AdapterAlarm extends ArrayAdapter<Alarm> {
         state.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(getItem(position).st == 0){//was 1
-                    //state.isChecked()
-                    Toast.makeText(customview.getContext(), "Alarm Turned On",Toast.LENGTH_SHORT).show();
                     getItem(position).st = 1; //was 0
-                    getItem(position).manager.set(AlarmManager.RTC_WAKEUP, getItem(position).mili, getItem(position).pendingIntent);
+                    //state.isChecked()
+                    //getItem(position).intent.putExtra("extra", "on");
+                    //getItem(position).manager.set(AlarmManager.RTC_WAKEUP, getItem(position).mili, getItem(position).pendingIntent);
+
+                    Intent intent = new Intent(getContext(), AlarmReceiver.class);
+                    intent.putExtra("extra", "on");
+                    //PendingIntent pending = PendingIntent.getBroadcast(getContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    PendingIntent pending = PendingIntent.getBroadcast(getContext(), position, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    AlarmManager manager = (AlarmManager)getContext().getSystemService(Context.ALARM_SERVICE);
+                    manager.set(AlarmManager.RTC_WAKEUP, getItem(position).mili, pending);
+
+                    Toast.makeText(customview.getContext(), "Alarm Turned On",Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    getItem(position).intent.putExtra("extra", "no");
                     getItem(position).st = 0; //was 1
-                    getItem(position).manager.cancel(getItem(position).pendingIntent);
-                    getContext().sendBroadcast(getItem(position).intent);
+                    //getItem(position).intent.putExtra("extra", "off");
+                    //getItem(position).manager.cancel(getItem(position).pendingIntent);
+                    //getContext().sendBroadcast(getItem(position).intent);
+
+                    Intent intent = new Intent(getContext(), AlarmReceiver.class);
+                    intent.putExtra("extra", "off");
+                    //PendingIntent pending = PendingIntent.getBroadcast(getContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    PendingIntent pending = PendingIntent.getBroadcast(getContext(), position, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    AlarmManager manager = (AlarmManager)getContext().getSystemService(Context.ALARM_SERVICE);
+                    manager.cancel(pending);
+
+                    getContext().sendBroadcast(intent);
                     Toast.makeText(customview.getContext(), "Alarm Turned Off", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -78,3 +98,4 @@ public class AdapterAlarm extends ArrayAdapter<Alarm> {
         return customview;
     }
 }
+

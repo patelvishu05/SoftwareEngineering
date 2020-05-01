@@ -1,45 +1,46 @@
-<?xml version="1.0" encoding="utf-8"?> 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" 
- 
-    xmlns:tools="http://schemas.android.com/tools"  
-    android:layout_width="match_parent"  
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AlarmFragment" 
+    tools:context=".AlarmFragment"
     android:id="@+id/display">
-   
-        <RelativeLayout 
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"> 
-         
-             <ListView 
-             android:id="@+id/alarmlist"
-             android:layout_width="wrap_content" 
-             android:layout_height="wrap_content"> 
-        
-    </ListView> 
-        <Button 
-            android:id="@+id/cancel2" 
-            android:visibility="gone" 
-            android:layout_width="wrap_content" 
-            android:layout_height="wrap_content" 
-            android:layout_alignParentBottom="true" 
-            android:text="Done" 
-            /> 
-        <Button  
-            android:id="@+id/delete2"  
-            android:visibility="gone"  
-            android:layout_width="wrap_content"  
-            android:layout_height="wrap_content"  
-            android:layout_alignParentBottom="true"  
-            android:layout_alignParentRight="true"  
-            android:text="Delete"/> 
-        <Button  
-            android:id="@+id/addAlarm"  
-            android:layout_width="wrap_content"  
-            android:layout_height="wrap_content"  
-            android:layout_alignParentBottom="true"  
-            android:layout_alignParentRight="true"  
-            android:text="Add Alarm" 
-            />  
-    </RelativeLayout> 
-</FrameLayout> 
+        android:layout_height="wrap_content">
+        <ListView
+            android:id="@+id/alarmlist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </ListView>
+
+        <Button
+            android:id="@+id/cancel2"
+            android:layout_width="56dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/ic_check_circle"
+            android:visibility="gone" />
+            <!--android:text="Done"-->
+        <Button
+            android:id="@+id/delete2"
+            android:layout_width="56dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/ic_remove_circle"
+            android:visibility="gone" />
+            <!--android:text="Delete"-->
+
+        <Button
+            android:id="@+id/addAlarm"
+            android:visibility="visible"
+            android:layout_width="56dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/ic_add_alarm" />
+            <!--//android:text="Add Alarm"-->
+
+    </RelativeLayout>
+</FrameLayout>

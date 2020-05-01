@@ -1,12 +1,10 @@
 package com.coderunners.spoofify;
 
-
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -16,9 +14,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.coderunners.spoofify.Model.SingleMediaPlayer;
+import com.coderunners.spoofify.Model.Stream;
 
 import java.io.IOException;
-
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,23 +25,16 @@ public class PlayerFragment extends Fragment
 {
     private FloatingActionButton play;
     private FloatingActionButton pause;
-    private FloatingActionButton previous;
-    private FloatingActionButton next;
+
     private SingleMediaPlayer mp;
     private TextView songName;
-    private String URL;
-    private Boolean hasUrl;
+    private Stream stream;
     private ImageView albumArt;
-    private Bitmap image;
-    private int resumeFlag=0;
-    private int resumePosition;
-    private String streamName = "No Stream Selected";
 
     public PlayerFragment()
     {
-        // Required empty public constructor
         mp = SingleMediaPlayer.getInstance();
-        hasUrl = false;
+        stream = Stream.getStreamInstance();
     }
 
     @Override
@@ -51,13 +42,16 @@ public class PlayerFragment extends Fragment
                              Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.fragment_player, container, false);
-        if(hasUrl) {
+        if(stream.hasUrl())
+        {
             mp.setAudioStreamType(AudioManager.STREAM_MUSIC);
-            try {
-                mp.setDataSource(URL);
-//                mp.setDataSource("http://10.100.118.102:8000/rhcp");
+            try
+            {
+                mp.setDataSource(stream.getURL());
                 mp.prepareAsync();
-            } catch (IOException e) {
+            }
+            catch (IOException e)
+            {
                 e.printStackTrace();
             }
         }
@@ -92,14 +86,10 @@ public class PlayerFragment extends Fragment
         });
 
         songName = (TextView) view.findViewById(R.id.songName);
-        songName.setText(streamName);
+        songName.setText(stream.getStreamName());
 
         albumArt = (ImageView) view.findViewById(R.id.albumArt);
-        if(hasUrl)
-        {
-            //albumArt.setImageResource(getResources().getDrawable(R.raw.muse););
-
-        }
+        albumArt.setImageResource(stream.getAlbumArt());
         // Inflate the layout for this fragment
         return view;
     }
@@ -112,9 +102,9 @@ public class PlayerFragment extends Fragment
         }
 
         mp.reset();
-        this.streamName = streamName;
-        URL = "http://10.100.118.102:8000/" + streamExt;
-        hasUrl = true;
+        stream.setStreamName(streamName);
+        stream.setURL(streamExt);
+
     }
 
 }

@@ -6,45 +6,9 @@
     tools:context=".AccountFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <ListView
+        android:id="@+id/_account_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:layout_marginTop="20dp"
-        android:text="Account Settings"
-        android:gravity="center_horizontal"
-        android:textSize="20dp"
-        android:id="@+id/accountsettingstitle"
-        />
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="100dp"
-
-        android:gravity="center_horizontal"
-        android:text="Update Account Information"
-        android:id="@+id/updateAccountButton"
-        />
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:layout_marginLeft="100dp"
-
-        android:gravity="center_horizontal"
-        android:text="Delete Account"
-        android:id="@+id/deleteAccountButton"
-        />
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
-        android:layout_marginLeft="100dp"
-
-        android:gravity="center_horizontal"
-        android:text="Post to News Feed"
-        android:id="@+id/postNewsButton"
-        />
-
+        android:layout_height="match_parent" />
 </FrameLayout>

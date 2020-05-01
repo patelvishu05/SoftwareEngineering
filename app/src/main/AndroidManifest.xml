@@ -24,15 +24,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
-
+        <activity android:name=".MainActivity"></activity>
         <receiver android:name=".AlarmReceiver" />
-
-        <service
-            android:name=".RingtoneService"
-            android:enabled="true" />
-
-        <activity android:name=".Model.AccountActivity" />
+        <service android:name=".RingtoneService"
+            android:enabled="true">
+        </service>
     </application>
 
 </manifest>

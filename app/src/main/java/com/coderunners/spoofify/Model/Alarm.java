@@ -15,18 +15,19 @@ public class Alarm {
     public String time;
     public String date;
     public long mili;
-    public Intent intent;
-    public PendingIntent pendingIntent;
-    public AlarmManager manager;
-    public Alarm(String name, String time, String date, int st, long mili, Intent intent, PendingIntent pendingIntent, AlarmManager manager){
+    //public Intent intent;
+    //public PendingIntent pendingIntent;
+    //public AlarmManager manager;
+    //public Alarm(String name, String time, String date, int st, long mili, Intent intent, PendingIntent pendingIntent, AlarmManager manager){
+    public Alarm(String name, String time, String date, int st, long mili){
         this.name = name;
         this.time = time;
         this.date = date;
         this.st = st;
         this.mili = mili;
-        this.intent = intent;
-        this.pendingIntent = pendingIntent;
-        this.manager = manager;
+        //this.intent = intent;
+        //this.pendingIntent = pendingIntent;
+        //this.manager = manager;
     }
 
 }

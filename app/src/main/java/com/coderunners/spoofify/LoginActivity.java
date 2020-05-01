@@ -30,6 +30,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.coderunners.spoofify.Model.AccountActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,7 +64,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
-
+    private Button makeAccount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,6 +95,20 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
+        makeAccount = (Button) findViewById(R.id.register_button);
+        makeAccount.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openRegistration();
+            }
+        });
+
+    }
+
+    public void openRegistration(){
+        Intent intent = new Intent(this, AccountActivity.class);
+        startActivity(intent);
     }
 
     private void populateAutoComplete() {

@@ -1,5 +1,7 @@
 package com.coderunners.spoofify;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -23,6 +25,7 @@ public class PlayerFragment extends Fragment
 {
     private FloatingActionButton play;
     private FloatingActionButton pause;
+
     private SingleMediaPlayer mp;
     private TextView songName;
     private Stream stream;
@@ -87,7 +90,6 @@ public class PlayerFragment extends Fragment
 
         albumArt = (ImageView) view.findViewById(R.id.albumArt);
         albumArt.setImageResource(stream.getAlbumArt());
-
         // Inflate the layout for this fragment
         return view;
     }
@@ -100,9 +102,9 @@ public class PlayerFragment extends Fragment
         }
 
         mp.reset();
-
         stream.setStreamName(streamName);
         stream.setURL(streamExt);
+
     }
 
 }

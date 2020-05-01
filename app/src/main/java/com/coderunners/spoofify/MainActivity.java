@@ -8,7 +8,11 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.Button;
+import com.coderunners.spoofify.R;
+//import com.coderunners.spoofify.Model.AccountActivity;
 
 import com.coderunners.spoofify.Model.NewsPost;
 import com.coderunners.spoofify.Model.Posts;

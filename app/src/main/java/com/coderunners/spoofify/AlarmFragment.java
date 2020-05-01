@@ -26,7 +26,6 @@ import android.widget.Toast;
 import com.coderunners.spoofify.Model.Alarm;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -240,5 +239,4 @@ public class AlarmFragment extends Fragment{
         fListener = null;
 
     }
-
 }
